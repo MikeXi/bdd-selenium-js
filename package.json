@@ -1,0 +1,27 @@
+{
+  "name": "bdd-selenium-js",
+  "version": "1.0.0",
+  "description": "bdd cuucmber and javascript project",
+  "main": "index.js",
+  "scripts": {
+    "smoke_run": "./node_modules/.bin/cucumber-js --tags @smoke -f json:report/cucumber_report.json",
+    "report": "node index.js",
+    "smoke": "npm run smoke_run && npm run report",
+    "regression_run": "./node_modules/.bin/cucumber-js -f json:report/cucumber_report.json",
+    "regression": "npm run regression_run && npm run report"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Mike Xi",
+  "license": "ISC",
+  "dependencies": {
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  },
+  "devDependencies": {
+    "chromedriver": "^86.0.0",
+    "cucumber": "^7.0.0-rc.0",
+    "cucumber-html-reporter": "^5.2.0"
+  }
+}

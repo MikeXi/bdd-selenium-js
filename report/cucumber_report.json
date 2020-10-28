@@ -1,0 +1,68 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "validate-actions-on-selenium-dev-website;on-visiting-the-homepage-of-selenium.dev",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "On visiting the homepage of selenium.dev",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I have visited the Selenium official web page",
+            "match": {
+              "location": "features\\step_definitions\\steps_demo.js:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "There is a title on the page as \"SeleniumHQ Browser Automation\"",
+            "match": {
+              "location": "features\\step_definitions\\steps_demo.js:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8647000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "I should be able to click Search in the sidebar",
+            "match": {
+              "location": "features\\step_definitions\\steps_demo.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@smoke",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "validate-actions-on-selenium-dev-website",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Validate actions on Selenium Dev website",
+    "tags": [],
+    "uri": "features\\demo.feature"
+  }
+]
