@@ -1,12 +1,16 @@
-var reporter = require('cucumber-html-reporter');
+'use strict';
+
+var  reporter = require('cucumber-html-reporter');
  
 var options = {
         theme: 'bootstrap',
-        jsonFile: 'report/cucumber_report.json',
-        output: 'report/cucumber_report.html',
+        jsonFile: 'reports/cucumber_report.json',
+        output: 'reports/cucumber_report.html',
         reportSuiteAsScenarios: true,
         scenarioTimestamp: true,
         launchReport: true,
+        storeScreenshots: true,
+        screenshotsDirectory: 'screenshots',
         metadata: {
             "Test Environment": "QA",
             "Browser": "Chrome",

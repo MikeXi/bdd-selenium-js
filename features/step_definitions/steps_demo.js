@@ -12,8 +12,8 @@ When(/^There is a title on the page as "([^"]+)"$/, async function(titleMatch) {
       })
   });
 
-Then(/^I should be able to click Search in the sidebar$/, function () {
-    this.driver.findElement({ name: 'search' }).click();
+Then(/^I should be able to click Search in the sidebar$/, async function () {
+    await this.driver.findElement({ name: 'search' }).click();
     this.driver.findElement({ name: 'search' }).sendKeys('test');
   });
 

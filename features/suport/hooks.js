@@ -16,14 +16,19 @@ BeforeAll(function(){
     driver = new seleniumWebdriver.Builder().forBrowser("chrome").setChromeOptions(options).build();
 });
 
+var executor = require('../../testrunner/executor');
+
 AfterAll(function(){
+    executor.execute('node index.js');
     return driver.quit();
 });
 
 class CustomWorld {
-    constructor() {
+    constructor({attach}) {
       this.driver = driver;
+      this.attach = attach;
     }
   }
   
 setWorldConstructor(CustomWorld);
+
