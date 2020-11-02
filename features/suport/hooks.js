@@ -8,7 +8,7 @@ setDefaultTimeout(30 * 1000);
 
 var {AfterAll, BeforeAll} = require('cucumber');
 
-var driver;
+global.driver;
 
 BeforeAll(function(){
     var options = new chrome.Options();
@@ -25,10 +25,10 @@ AfterAll(function(){
 
 class CustomWorld {
     constructor({attach}) {
-      this.driver = driver;
+      // this.driver = driver;
       this.attach = attach;
     }
-  }
+  };
   
 setWorldConstructor(CustomWorld);
 

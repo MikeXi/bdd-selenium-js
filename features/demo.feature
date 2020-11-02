@@ -1,12 +1,18 @@
-Feature: Validate actions on Selenium Dev website
+Feature: Demo site test
 
   @smoke
-  Scenario: On visiting the homepage of selenium.dev
-    Given I have visited the Selenium official web page
-    When There is a title on the page as "SeleniumHQ Browser Automation"
-    Then I should be able to click Search in the sidebar
+  Scenario Outline: Login demo site
+    Given I navigate to the login page
+    When I input correct username and password
+    Then I can see the title <title>
+    Examples:
+      |title|
+      |Execute Automations|
 
-  Scenario: On selenium
-    Given I have visited the Selenium
-    When There is a title on the page as "SeleniumHQ Browser Automation"
-    Then I should be able to click Search in the sidebar
+  Scenario Outline: Login demo site again
+    Given I am in login page
+    When I input correct username and password
+    Then I can see the title <title>
+    Examples:
+      |title|
+      |Execute Automation|

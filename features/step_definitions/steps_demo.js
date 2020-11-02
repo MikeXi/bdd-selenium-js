@@ -1,22 +1,22 @@
 const { Given, When, Then } = require('cucumber');
 var assert = require('assert');
+var demoPage = require('../pages/demo');
 
-Given(/^I have visited the Selenium official web page$/, function () {
-    this.driver.get('https://www.selenium.dev');
-  });
+Given(/^I navigate to the login page$/, function () {
+    demoPage.openURL();
+});
 
-When(/^There is a title on the page as "([^"]+)"$/, async function(titleMatch) {
-    await this.driver.getTitle()
-      .then(function (title){
+Given(/^I am in login page$/, function () {
+    console.log('I am in login page');
+});
+
+When(/^I input correct username and password$/, async function () {
+    await demoPage.login();
+});
+
+Then(/^I can see the title ([^"]+)$/, async function (titleMatch) {
+    await demoPage.getPageTitle().then(function(title){
         assert.equal(title, titleMatch);
-      })
-  });
+    })
+});
 
-Then(/^I should be able to click Search in the sidebar$/, async function () {
-    await this.driver.findElement({ name: 'search' }).click();
-    this.driver.findElement({ name: 'search' }).sendKeys('test');
-  });
-
-Given(/^I have visited the Selenium$/, function () {
-    assert.equal(1,1);
-  });

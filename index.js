@@ -1,11 +1,14 @@
 'use strict';
 
 var  reporter = require('cucumber-html-reporter');
- 
+var report = require('./config/report');
+var jsonFile = report.jsonFile;
+var output = report.output;
+
 var options = {
         theme: 'bootstrap',
-        jsonFile: 'reports/cucumber_report.json',
-        output: 'reports/cucumber_report.html',
+        jsonFile: jsonFile,
+        output: output,
         reportSuiteAsScenarios: true,
         scenarioTimestamp: true,
         launchReport: true,

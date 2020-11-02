@@ -4,8 +4,9 @@
   "description": "bdd cuucmber and javascript project",
   "main": "index.js",
   "scripts": {
-    "smoke": "node ./testrunner/smoke-runner.js",
-    "regression": "node ./testrunner/regression-runner.js"
+    "test": "./node_modules/.bin/cucumber-js",
+    "dev": "cross-env NODE_ENV=dev node ./testrunner/runner.js",
+    "qa": "cross-env NODE_ENV=qa node ./testrunner/runner.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "chromedriver": "^86.0.0",
+    "cross-env": "^7.0.2",
     "cucumber": "^7.0.0-rc.0",
     "cucumber-html-reporter": "^5.2.0"
   }
