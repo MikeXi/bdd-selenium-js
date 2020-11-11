@@ -2,8 +2,7 @@
 
 var exec = require('child_process').exec;
 var fs = require('fs');
-var report = require('../config/report');
-var reportsFolder = report.reportsFolder;
+let { reportsFolder } = require('../config/report');
 
 module.exports = {
     execute: function(cmd){	

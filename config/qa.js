@@ -1,5 +1,5 @@
 module.exports = {
-    url: 'http://www.executeautomation.com/demosite/Login.html',
+    url: 'https://bby-apac-cn-qa.brb-labs.com/',
     userName: 'adminqa',
     password: 'adminqa'
 }

@@ -3,6 +3,7 @@ var url;
 var userName;
 var password;
 var env = process.env.NODE_ENV;
+// var env = 'qa';
 
 switch(env){
     case 'dev' :
@@ -20,6 +21,7 @@ userName = envFile.userName;
 password = envFile.password;
 
 module.exports = {
+    env: env,
     url: url,
     userName: userName,
     password: password

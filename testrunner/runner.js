@@ -1,8 +1,7 @@
 'use strict';
 
 var executor = require('./executor');
-var report = require('../config/report');
-var jsonFile = report.jsonFile;
+var { jsonFile }= require('../config/report');
 var cmd;
 
 if(process.argv.length == 3){

@@ -1,9 +1,8 @@
 'use strict';
 
-var  reporter = require('cucumber-html-reporter');
-var report = require('./config/report');
-var jsonFile = report.jsonFile;
-var output = report.output;
+let  reporter = require('cucumber-html-reporter');
+let { jsonFile, output } = require('./config/report');
+let { env } = require('./config/env');
 
 var options = {
         theme: 'bootstrap',
@@ -15,7 +14,7 @@ var options = {
         storeScreenshots: true,
         screenshotsDirectory: 'screenshots',
         metadata: {
-            "Test Environment": "QA",
+            "Test Environment": env.toUpperCase(),
             "Browser": "Chrome",
             "Platform": "Windows 10",
             "Parallel": "Scenarios",

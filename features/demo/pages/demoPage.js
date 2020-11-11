@@ -1,7 +1,4 @@
-var env = require('../../config/env');
-var url = env.url;
-var userName = env.userName;
-var password = env.password;
+let { url, userName, password } = require('../../../config/env');
 
 module.exports = {
     openURL: function(){
