@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/cucumber-js",
-    "dev": "cross-env NODE_ENV=dev node ./testrunner/runner.js",
-    "qa": "cross-env NODE_ENV=qa node ./testrunner/runner.js"
+    "dev:chrome": "cross-env ENV=dev BROWSER=chrome node ./testrunner/runner.js",
+    "dev:ie": "cross-env ENV=dev BROWSER=ie node ./testrunner/runner.js",
+    "dev:firefox": "cross-env ENV=dev BROWSER=firefox node ./testrunner/runner.js",
+    "qa:chrome": "cross-env NODE_ENV=qa BROWSER=chrome node ./testrunner/runner.js",
+    "qa:ie": "cross-env NODE_ENV=qa BROWSER=ie node ./testrunner/runner.js",
+    "qa:firefox": "cross-env NODE_ENV=qa BROWSER=firefox node ./testrunner/runner.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +25,12 @@
     "chromedriver": "^86.0.0",
     "cross-env": "^7.0.2",
     "cucumber": "^7.0.0-rc.0",
-    "cucumber-html-reporter": "^5.2.0"
+    "cucumber-html-reporter": "^5.2.0",
+    "edgedriver": "^4.17134.1",
+    "geckodriver": "^1.20.0",
+    "iedriver": "^3.150.1",
+    "minimist": "^1.2.5",
+    "ms-chromium-edge-driver": "^0.3.0",
+    "wdio-safaridriver-service": "0.0.1"
   }
 }

@@ -2,7 +2,7 @@ var envFile;
 var url;
 var userName;
 var password;
-var env = process.env.NODE_ENV;
+var env = process.env.ENV;
 // var env = 'qa';
 
 switch(env){

@@ -1,24 +1,15 @@
-const { setWorldConstructor } = require('cucumber');
-const seleniumWebdriver = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
-const chromedriver = require('chromedriver');
+const { setWorldConstructor, setDefaultTimeout, AfterAll, BeforeAll } = require('cucumber');
+const { getDriver } = require('./utils');
+var executor = require('../../testrunner/executor');
 
-var {setDefaultTimeout} = require('cucumber');
 setDefaultTimeout(300 * 1000);
 
-var {AfterAll, BeforeAll} = require('cucumber');
 
 global.driver = null;
 
 BeforeAll(function(){
-    var options = new chrome.Options();
-    options.addArguments("--start-maximized");
-    if (driver == null){
-      driver = new seleniumWebdriver.Builder().forBrowser("chrome").setChromeOptions(options).build();
-    }   
+      driver = getDriver();
 });
-
-var executor = require('../../testrunner/executor');
 
 AfterAll(function(){
     executor.execute('node index.js');
@@ -26,11 +17,12 @@ AfterAll(function(){
 });
 
 class CustomWorld {
-    constructor({attach}) {
+    constructor({attach, parameters}) {
+      this.parameters = parameters;
       this.driver = driver;
       this.attach = attach;
     }
-  };
+};
   
 setWorldConstructor(CustomWorld);
 

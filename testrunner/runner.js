@@ -2,10 +2,12 @@
 
 var executor = require('./executor');
 var { jsonFile }= require('../config/report');
+var argv = require('minimist')(process.argv.slice(2));
+
 var cmd;
 
-if(process.argv.length == 3){
-    var tag = process.argv[2];
+if(argv.t !== undefined){
+    var tag = argv.t;
     cmd = '.\\node_modules\\.bin\\cucumber-js --tags @' + tag + ' -f json:' + jsonFile;
 }
 else{

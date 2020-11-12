@@ -15,6 +15,7 @@ module.exports = {
             }
         });	
     },
+    
     createResultFolder: function (){
         if (fs.existsSync(reportsFolder) == false){
             fs.mkdir(reportsFolder,function(err){
