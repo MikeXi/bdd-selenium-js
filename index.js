@@ -3,6 +3,7 @@
 let  reporter = require('cucumber-html-reporter');
 let { jsonFile, output } = require('./config/report');
 let { env } = require('./config/env');
+var browser = process.env.BROWSER;
 
 var options = {
         theme: 'bootstrap',
@@ -15,7 +16,7 @@ var options = {
         screenshotsDirectory: 'screenshots',
         metadata: {
             "Test Environment": env.toUpperCase(),
-            "Browser": "Chrome",
+            "Browser": browser.toUpperCase(),
             "Platform": "Windows 10",
             "Parallel": "Scenarios",
             "Executed": "Remote"
