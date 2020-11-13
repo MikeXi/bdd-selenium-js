@@ -1,4 +1,4 @@
-const { setWorldConstructor, setDefaultTimeout, AfterAll, BeforeAll } = require('cucumber');
+const { setWorldConstructor, setDefaultTimeout, AfterAll, BeforeAll } = require('@cucumber/cucumber');
 const { getDriver } = require('./utils');
 var executor = require('../../testrunner/executor');
 

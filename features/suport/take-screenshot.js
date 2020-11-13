@@ -1,4 +1,4 @@
-var { After, Status } = require("cucumber");
+var { After, Status } = require("@cucumber/cucumber");
 
 After(async function(scenario) {
     var world = this;
