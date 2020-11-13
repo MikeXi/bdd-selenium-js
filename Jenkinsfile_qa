@@ -6,8 +6,6 @@ def gitCNMTest = 'https://git.epam.com/mike_xi/bdd-selenium-js.git'
 def branch = "*/master"
 def gitCredentialsId = '6e186529-3131-48bb-87e1-d27a214e5460'
 
-def targetEnvironment = 'QA'
-
 // Define basic folders
 def dirMainTest = '.'
 def dirZip = "${dirMainTest}/reports"
@@ -63,20 +61,9 @@ node {
     timestamps {
         def log;
         try {
-            pipeline {
-                parameters {
-                    choice(name: 'Environment', choices: ['DEV', 'QA'], description: 'Please select the environment')
-                }
-                stage('Info') {
-                    log = "[STAGE1]: Auto-Test jenkins pipeline starts..."
-                    echo "\u2600 Runtime Environment: [${params.Environment}]"
-                }
-            }
             stage('Preparation') {
                 echo "\u2600 Preparation"
                 log = "[STAGE2]: Checkout code now..."
-                def workspace = pwd()
-                echo "\u2600 WORKSPACE: ${workspace}"
                 fetch(gitCNMTest, branch, gitCredentialsId, dirMainTest)
 
 				echo "\u2600 Install NodeJS dependencies"
@@ -94,12 +81,27 @@ node {
 				bat '@echo off for /f "delims=" %%i in (\'npm ls wdio-safaridriver-service\') do if "%%i"=="`-- (empty)" (npm install --save-dev wdio-safaridriver-service)'
 				
             }
-
-            stage('Execute') {
-                log = "[STAGE3]: Execute automation test now..."
-                echo "\u2600 Execute automation test now"
-                bat "npm run dev:chrome -- -t smoke"
+            pipeline {
+                parameters {
+                    choice(name: 'Environment', choices: ['dev', 'qa'], description: 'Please select the environment')
+                    choice(name: 'Browser', choices: ['chrome', 'ie'], description: 'Please select the browser')
+                }
+                stage('Execution') {
+                    script{
+                        echo "\u2600 Execute automation test now"
+                        echo "\u2600 Runtime Environment: [${params.Environment}]"
+                        echo "\u2600 Runtime Browser: [${params.Browser}]"
+                        
+                        bat "npm run ${params.Environment}:${params.Browser} -- -t smoke"
+                        // if("ENV" == "DEV"){
+                        //     bat 'npm run dev:chrome -- -t smoke'
+                        // }else{
+                        //     bat 'npm run dev:ie -- -t smoke'
+                        // }
+                    }
+                }
             }
+            
             currentStatus = 'SUCCESS'
         } catch (exc) {
             currentStatus = 'FAILURE'
