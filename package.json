@@ -8,9 +8,9 @@
     "dev:chrome": "cross-env ENV=dev BROWSER=chrome node ./testrunner/runner.js",
     "dev:ie": "cross-env ENV=dev BROWSER=ie node ./testrunner/runner.js",
     "dev:firefox": "cross-env ENV=dev BROWSER=firefox node ./testrunner/runner.js",
-    "qa:chrome": "cross-env NODE_ENV=qa BROWSER=chrome node ./testrunner/runner.js",
-    "qa:ie": "cross-env NODE_ENV=qa BROWSER=ie node ./testrunner/runner.js",
-    "qa:firefox": "cross-env NODE_ENV=qa BROWSER=firefox node ./testrunner/runner.js"
+    "qa:chrome": "cross-env ENV=qa BROWSER=chrome node ./testrunner/runner.js",
+    "qa:ie": "cross-env ENV=qa BROWSER=ie node ./testrunner/runner.js",
+    "qa:firefox": "cross-env ENV=qa BROWSER=firefox node ./testrunner/runner.js"
   },
   "repository": {
     "type": "git",
