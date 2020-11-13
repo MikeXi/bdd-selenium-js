@@ -11,7 +11,7 @@ var options = {
         output: output,
         reportSuiteAsScenarios: true,
         scenarioTimestamp: true,
-        launchReport: true,
+        launchReport: false,
         storeScreenshots: true,
         screenshotsDirectory: 'screenshots',
         metadata: {
