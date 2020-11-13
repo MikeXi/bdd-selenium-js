@@ -1,0 +1,130 @@
+#!/usr/bin/env groovy
+
+properties(
+        [
+                buildDiscarder(
+                        logRotator(
+                                artifactDaysToKeepStr: '5',
+                                artifactNumToKeepStr: '1',
+                                daysToKeepStr: '30',
+                                numToKeepStr: '20'
+                        )
+                ),
+                disableConcurrentBuilds(),
+				gitLabConnection('sami.git')  	
+        ]
+)
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Gitlab Info
+def gitCNMTest = 'https://git.epam.com/mike_xi/bdd-selenium-js.git'
+def branch = "*/master"
+def gitCredentialsId = '6e186529-3131-48bb-87e1-d27a214e5460'
+
+def targetEnvironment = 'QA'
+
+// Define basic folders
+def dirMainTest = 'BDD'
+def dirJSTest = '${dirMainTest}/bdd-selenium-js'
+def dirZip = '${dirJSTest}/reports'
+
+//def WORKSPACE = '/var/jenkins_home/workspace/qa/performance_qa'
+
+currentStatus = 'START'
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * use to checkout code from gitlab
+ * @param gitUrl
+ * @param branch
+ * @param gitCredentialsId
+ * @return
+ */
+/**
+ $class             : 'SubmoduleOption',
+ disableSubmodules  : false,
+ parentCredentials  : true,
+ recursiveSubmodules: true,
+ reference          : '',
+ trackingSubmodules : false
+ */
+def fetch(gitUrl, branch, gitCredentialsId, targetDir) {
+    echo "Begin to checkout code from ${branch}..."
+    try {
+        checkout(
+                [
+                        $class                           : 'GitSCM',
+                        branches                         : [[name: branch]],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions                       : [[
+                                                                    $class           : 'RelativeTargetDirectory',
+                                                                    relativeTargetDir: targetDir
+                                                            ]],
+                        gitTool                          : 'Default',
+                        submoduleCfg                     : [],
+                        userRemoteConfigs                : [[
+                                                                    credentialsId: gitCredentialsId,
+                                                                    url          : gitUrl
+                                                            ]]
+                ]
+        )
+        currentStatus = 'CHECKOUT_SUCCESS'
+    } catch (err) {
+        echo 'Checkout code failed from gitlab. See the error for details..'
+        currentStatus = 'SKIP'
+        throw err
+    }
+    echo "End checkout code: ${currentStatus}"
+}
+///////////////////////////////////////////////////////////////////////////////////////////
+node {
+    timestamps {
+        def log;
+        try {
+            stage('Info') {
+                log = "[STAGE1]: Auto-Test jenkins pipeline starts..."
+                echo "\u2600 Runtime Environment: [${targetEnvironment}]"
+                sh "env"
+            }
+
+            stage('Preparation') {
+                echo "\u2600 Preparation"
+                log = "[STAGE2]: Checkout code now..."
+                // pull code from the gitlab server
+                sh "mkdir -p ${dirMainTest}"
+                fetch(gitCNMTest, branch, gitCredentialsId, dirMainTest)
+				def workspace = pwd()
+                echo "\u2600 WORKSPACE: ${workspace}"
+				echo "Install NodeJS dependencies"
+				
+            }
+
+            stage('Execute') {
+                log = "[STAGE3]: Execute automation test now..."
+                echo "\u2600 Execute automation test now"
+                dir(${dirJSTest}) {				
+                    echo "Executing JMeter Scripts with Concurrency 10, Duration 1800s..."
+                    sh "npm run dev:chrome -- -t smoke"
+                }
+            }
+            currentStatus = 'SUCCESS'
+        } catch (exc) {
+            currentStatus = 'FAILURE'
+            echo 'ERROR: ' + exc
+            log = log + '[' + exc.getMessage() + ']'
+            throw exc
+        }
+        finally {
+            stage('Report') {
+                String resultFile = "TestReports.zip"
+                sh "rm -rf TestReports.zip"
+                zip([
+                        archive: true,
+                        dir    : dirZip,
+                        glob   : '',
+                        zipFile: resultFile
+                ])  
+            }
+        }
+
+    }
+}
