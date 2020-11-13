@@ -1,5 +1,5 @@
 const { By } = require('selenium-webdriver');
-const { Given, When, Then } = require('cucumber');
+const { Given, When, Then } = require('@cucumber/cucumber');
 var richStorePage = require('../pages/richStorePage');
 var common = require('../../commonpages/common');
 var assert = require('assert');

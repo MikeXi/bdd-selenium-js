@@ -1,4 +1,4 @@
-const { Given, When, Then } = require('cucumber');
+const { Given, When, Then } = require('@cucumber/cucumber');
 var assert = require('assert');
 var common = require('../../commonpages/common');
 var signInPage = require('../pages/signInPage');
