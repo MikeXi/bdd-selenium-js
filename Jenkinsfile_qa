@@ -85,19 +85,21 @@ node {
                 parameters {
                     choice(name: 'Environment', choices: ['dev', 'qa'], description: 'Please select the environment')
                     choice(name: 'Browser', choices: ['chrome', 'ie'], description: 'Please select the browser')
+                    choice(name: 'Tag', choices: ['smoke', 'regression'], description: 'Please select the cases wants to run')
                 }
                 stage('Execution') {
                     script{
                         echo "\u2600 Execute automation test now"
                         echo "\u2600 Runtime Environment: [${params.Environment}]"
                         echo "\u2600 Runtime Browser: [${params.Browser}]"
+                        echo "\u2600 Runtime Cases: [${params.Tag}]"
                         
                         bat "npm run ${params.Environment}:${params.Browser} -- -t smoke"
-                        // if("ENV" == "DEV"){
-                        //     bat 'npm run dev:chrome -- -t smoke'
-                        // }else{
-                        //     bat 'npm run dev:ie -- -t smoke'
-                        // }
+                        if("${params.Tag}" == "regression"){
+                            bat "npm run ${params.Environment}:${params.Browser}"
+                        }else{
+                            bat "npm run ${params.Environment}:${params.Browser} -- -t ${params.Tag}"
+                        }
                     }
                 }
             }
