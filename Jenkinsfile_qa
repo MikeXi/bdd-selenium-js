@@ -94,12 +94,7 @@ node {
                         echo "\u2600 Runtime Browser: [${params.Browser}]"
                         echo "\u2600 Runtime Cases: [${params.Tag}]"
                         
-                        bat "npm run ${params.Environment}:${params.Browser} -- -t smoke"
-                        if("${params.Tag}" == "regression"){
-                            bat "npm run ${params.Environment}:${params.Browser}"
-                        }else{
-                            bat "npm run ${params.Environment}:${params.Browser} -- -t ${params.Tag}"
-                        }
+                        bat "npm run ${params.Environment}:${params.Browser} -- -t ${params.Tag}"
                     }
                 }
             }
