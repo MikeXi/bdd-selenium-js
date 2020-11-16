@@ -62,7 +62,7 @@ node {
         def log;
         try {
             stage('Preparation') {
-                echo "\u2600 Preparation"
+                echo "\u2600 Checkout code now..."
                 log = "[STAGE2]: Checkout code now..."
                 fetch(gitCNMTest, branch, gitCredentialsId, dirMainTest)
 
@@ -80,6 +80,8 @@ node {
 				bat '@echo off for /f "delims=" %%i in (\'npm ls ms-chromium-edge-driver\') do if "%%i"=="`-- (empty)" (npm install --save-dev ms-chromium-edge-driver)'
 				bat '@echo off for /f "delims=" %%i in (\'npm ls wdio-safaridriver-service\') do if "%%i"=="`-- (empty)" (npm install --save-dev wdio-safaridriver-service)'
 				
+				echo "\u2600 Delete reports folder"
+				bat 'rmdir /s/q reports'
             }
             pipeline {
                 parameters {
@@ -112,6 +114,7 @@ node {
                 // zip zipFile: 'TestReports.zip', archive: false, dir:'reports/'
                 //bat "del TestReports.zip"
                 archiveArtifacts artifacts: 'reports/', followSymlinks: true
+                publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'reports', reportFiles: 'cucumber_report.html', reportName: 'HTML Report', reportTitles: ''])
             }
         }
 
