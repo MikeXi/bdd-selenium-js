@@ -2,8 +2,8 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 var assert = require('assert');
 var demoPage = require('../pages/demoPage');
 
-Given(/^I navigate to the login page$/, function () {
-    demoPage.openURL();
+Given(/^I navigate to the login page$/, async function () {
+    await demoPage.openURL();
 });
 
 Given(/^I am in login page$/, function () {

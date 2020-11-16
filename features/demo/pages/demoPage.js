@@ -1,8 +1,8 @@
 let { url, userName, password } = require('../../../config/env');
 
 module.exports = {
-    openURL: function(){
-        driver.get(url);
+    openURL: async function(){
+        await driver.get(url);
     },
 
     login: async function(){
