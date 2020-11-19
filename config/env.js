@@ -16,8 +16,10 @@ switch(env){
 }
 
 url= envFile.url;
-userName = envFile.userName;
-password = envFile.password;
+// userName = envFile.userName;
+// password = envFile.password;
+userName = process.env.YANDEX_MAIL_USER_USR;
+password = process.env.YANDEX_MAIL_USER_PSW;
 
 module.exports = {
     env: env,

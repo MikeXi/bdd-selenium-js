@@ -84,6 +84,9 @@ node {
 				bat 'rmdir /s/q reports'
             }
             pipeline {
+                environment {
+                    YANDEX_MAIL_USER  = credentials('yandex-user')
+                }
                 parameters {
                     choice(name: 'Environment', choices: ['dev', 'qa'], description: 'Please select the environment')
                     choice(name: 'Browser', choices: ['chrome', 'ie', 'firefox'], description: 'Please select the browser')

@@ -18,6 +18,7 @@ module.exports = {
     subjectLabelLocator: By.className('mail-MessageSnippet-Item mail-MessageSnippet-Item_subject'),
     bodyLabelLocator: By.className('mail-MessageSnippet-Item mail-MessageSnippet-Item_firstline js-message-snippet-firstline'),
     SendLocator: By.className('control button2 button2_view_default button2_tone_default button2_size_l button2_theme_action button2_pin_circle-circle ComposeControlPanelButton-Button ComposeControlPanelButton-Button_action'),
+    backToInboxLinkLocator: By.linkText('Back to "Inbox"'),
 
     addDraftMail: async function(to, subject, body){
         var subject = subject + ' ' + this.randomString;
@@ -58,6 +59,7 @@ module.exports = {
         var sendButon = await driver.wait(until.elementLocated(this.SendLocator));
         await sendButon.click();
         await driver.sleep(2000);
+        await driver.findElement(this.backToInboxLinkLocator).click();
 
     },
 
