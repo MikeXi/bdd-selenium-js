@@ -1,4 +1,4 @@
-let { url, userName, password } = require('../../../../config/env');
+let { url } = require('../../../../config/env');
 const { By, Key, until } = require('selenium-webdriver');
 var mailPage = require('../../mail/pages/mailPage');
 

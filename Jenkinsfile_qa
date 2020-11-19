@@ -99,7 +99,7 @@ node {
                         echo "\u2600 Runtime Browser: [${params.Browser}]"
                         echo "\u2600 Runtime Cases: [${params.Tag}]"
                         
-                        bat "npm run ${params.Environment}:${params.Browser} -- -t ${params.Tag}"
+                        bat "npm run ${params.Environment}:${params.Browser} -- -t ${params.Tag} -u $YANDEX_MAIL_USER_USR -p $YANDEX_MAIL_USER_PSW"
                     }
                 }
             }
