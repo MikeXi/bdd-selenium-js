@@ -4,7 +4,7 @@
   "description": "bdd cuucmber and javascript project",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/cucumber-js",
+    "test": "cross-env ENV=dev BROWSER=chrome ./node_modules/.bin/cucumber-js features/yandex/login features/yandex/mail features/yandex/account",
     "dev:chrome": "cross-env ENV=dev BROWSER=chrome node ./testrunner/runner.js",
     "dev:ie": "cross-env ENV=dev BROWSER=ie node ./testrunner/runner.js",
     "dev:firefox": "cross-env ENV=dev BROWSER=firefox node ./testrunner/runner.js",

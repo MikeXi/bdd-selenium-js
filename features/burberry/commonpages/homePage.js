@@ -1,5 +1,4 @@
 const { By } = require('selenium-webdriver');
-const { Driver } = require('selenium-webdriver/chrome');
 const common = require('./common');
 const { url } = require('../../../config/env');
 
@@ -39,12 +38,10 @@ module.exports = {
     },
 
     openBurberrySite: async function(){
-        // var currentHandle = await common.openURL();
         var currentUrl = await common.openURL();
         console.log(currentUrl);
         await common.pageLoadCompleted();
         if(currentUrl != url){
-            // await common.switchTab(0);
             await driver.findElement(this.logo).click();
             await common.pageLoadCompleted();
         }else{

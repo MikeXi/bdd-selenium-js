@@ -86,7 +86,7 @@ node {
             pipeline {
                 parameters {
                     choice(name: 'Environment', choices: ['dev', 'qa'], description: 'Please select the environment')
-                    choice(name: 'Browser', choices: ['chrome', 'ie'], description: 'Please select the browser')
+                    choice(name: 'Browser', choices: ['chrome', 'ie', 'firefox'], description: 'Please select the browser')
                     choice(name: 'Tag', choices: ['smoke', 'regression'], description: 'Please select the cases wants to run')
                 }
                 stage('Execution') {

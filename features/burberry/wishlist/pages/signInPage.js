@@ -1,6 +1,4 @@
 const { By } = require('selenium-webdriver');
-const { elementsLocated } = require('selenium-webdriver/lib/until');
-const common = require('../../commonpages/common');
 
 module.exports = {
     signInCTA: By.className('button_input'),

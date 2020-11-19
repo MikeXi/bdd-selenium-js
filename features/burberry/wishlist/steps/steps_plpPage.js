@@ -3,7 +3,6 @@ var assert = require('assert');
 var common = require('../../commonpages/common');
 var homePage = require('../../commonpages/homePage');
 const plpPage = require('../pages/plpPage');
-const { password } = require('../../../../config/dev');
 
 Then(/^I can see the ([^"]+) page opens$/, async function (plp) {
     await common.waitUntilElementLocated(plpPage.breadcrumbLocator).getText().then(function(label){

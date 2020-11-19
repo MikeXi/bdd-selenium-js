@@ -8,12 +8,10 @@ module.exports = {
             await driver.get(url);
         }
         return await driver.getCurrentUrl();
-        // return await driver.getWindowHandle();
     },
 
     pageLoadCompleted: async function(){
         await driver.executeScript('window.onload = function(){setTimeout(function(){console.log("Page is loaded");},5000)}');
-        // await driver.executeScript('document.onreadystatechange = function(){if(document.readyState == "complete"){setTimeout(function(){console.log("Page is loaded");},5000)}})');
     },
 
     waitUntilElementLocated: function(elementLocator){

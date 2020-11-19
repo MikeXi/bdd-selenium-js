@@ -18,22 +18,23 @@ module.exports = {
     getDriver: function(){
         var driver;
         var browser = process.env.BROWSER;
+
         switch(browser){
             case('chrome'):
-            driver = new chromeDriver();
-            break;
+                driver = new chromeDriver();
+                break;
             case('ie'):
-            driver = new ieDriver();
-            break;
+                driver = new ieDriver();
+                break;
             case('edge'):
-            driver = new edgeDriver();
-            break;
+                driver = new edgeDriver();
+                break;
             case('firefox'):
-            driver = new firefoxDriver();
-            break;
+                driver = new firefoxDriver();
+                break;
             case('safari'):
-            driver = new safariDriver();
-            break;
+                driver = new safariDriver();
+                break;
         } 
         return driver;
     }

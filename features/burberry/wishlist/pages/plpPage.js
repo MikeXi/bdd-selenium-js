@@ -1,6 +1,4 @@
 const { By } = require('selenium-webdriver');
-const { Driver } = require('selenium-webdriver/chrome');
-const common = require('../../commonpages/common');
 
 module.exports = {
     breadcrumbLocator: By.className('breadcrumb_item breadcrumb_item-label'),

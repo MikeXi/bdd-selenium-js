@@ -3,7 +3,6 @@ var assert = require('assert');
 var common = require('../../commonpages/common');
 var signInPage = require('../pages/signInPage');
 const { registerUser } = require('../../../../data/user');
-const { Driver } = require('selenium-webdriver/chrome');
 
 var activationLabelDisplayed = 'async function(){await common.elementDisplayed(signInPage.activationLabel).then(function(activeLavel){assert.equal(activeLavel, true);});};'
 

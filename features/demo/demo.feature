@@ -1,6 +1,6 @@
 Feature: Demo site test
 
-  @smoke @regression
+  @demo
   Scenario Outline: Login demo site
     Given I navigate to the login page
     When I input correct username and password
@@ -9,7 +9,7 @@ Feature: Demo site test
       |title|
       |Execute Automations|
 
-  @regression
+  @demo
   Scenario Outline: Login demo site again
     Given I am in login page
     When I input correct username and password

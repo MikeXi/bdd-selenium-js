@@ -5,10 +5,11 @@ var { jsonFile }= require('../config/report');
 var argv = require('minimist')(process.argv.slice(2));
 
 var cmd;
+var features = 'features/yandex/login features/yandex/mail features/yandex/account';
 
 if(argv.t !== undefined){
     var tag = argv.t;
-    cmd = '.\\node_modules\\.bin\\cucumber-js --tags @' + tag + ' -f json:' + jsonFile;
+    cmd = '.\\node_modules\\.bin\\cucumber-js ' + features + ' --tags @' + tag + ' -f json:' + jsonFile;
 }
 else{
     cmd = '.\\node_modules\\.bin\\cucumber-js -f json:' + jsonFile;

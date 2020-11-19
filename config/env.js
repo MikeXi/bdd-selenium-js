@@ -3,7 +3,6 @@ var url;
 var userName;
 var password;
 var env = process.env.ENV;
-// var env = 'qa';
 
 switch(env){
     case 'dev' :

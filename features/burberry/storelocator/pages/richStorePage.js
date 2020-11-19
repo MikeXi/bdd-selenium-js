@@ -1,5 +1,4 @@
 const { By, until } = require('selenium-webdriver');
-const { Driver } = require('selenium-webdriver/edge');
 var common = require('../../commonpages/common');
 
 module.exports = {

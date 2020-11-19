@@ -2,7 +2,6 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 var assert = require('assert');
 var common = require('../../commonpages/common');
 var homePage = require('../../commonpages/homePage');
-const { Driver } = require('selenium-webdriver/chrome');
 
 Given(/^I open Burberry Site$/, async function () {
     await homePage.openBurberrySite();

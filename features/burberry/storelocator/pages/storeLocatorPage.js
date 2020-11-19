@@ -1,5 +1,4 @@
 const { By, until, Key } = require('selenium-webdriver');
-const { Driver } = require('selenium-webdriver/edge');
 var common = require('../../commonpages/common');
 
 module.exports = {
@@ -22,7 +21,6 @@ module.exports = {
         await driver.sleep(2000);
         await common.selectOption(this.citySelect, city);
         await driver.sleep(2000);
-        // await driver.findElement(this.searchButton).sendKeys('webdriver', Key.ENTER);
         await driver.findElement(this.searchButton).click();
         await driver.sleep(2000);
     },
@@ -33,7 +31,6 @@ module.exports = {
 
     getStoreInfo: async function(field){
         await driver.findElement(this.storeCard).click();
-        // await driver.findElement(this.storeDetailsLink).click();
         switch(field.toUpperCase()){
             case 'NAME':
                 return await driver.findElement(this.storName).getText();
