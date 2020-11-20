@@ -1,7 +1,5 @@
 var envFile;
 var url;
-var userName;
-var password;
 var env = process.env.ENV;
 
 switch(env){
@@ -16,15 +14,9 @@ switch(env){
 }
 
 url= envFile.url;
-// userName = envFile.userName;
-// password = envFile.password;
-// userName = process.env.YANDEX_MAIL_USER_USR;
-// password = process.env.YANDEX_MAIL_USER_PSW;
 
 module.exports = {
     env: env,
     url: url,
-    // userName: userName,
-    // password: password
 }
 

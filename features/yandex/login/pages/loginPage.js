@@ -15,7 +15,7 @@ module.exports = {
 
     login: async function(){
         var buttons = await driver.findElement(this.buttonsLocator);
-        var loginButton = await buttons.findElement(this.loginButtonLocator).click();
+        await buttons.findElement(this.loginButtonLocator).click();
         await driver.wait(until.elementLocated(this.userNameTextLocator)).sendKeys(userName);
         try{
             await actions.keyDown(Key.ENTER).perform();

@@ -22,10 +22,14 @@ AfterAll(function(){
 });
 
 class CustomWorld {
-    constructor({attach, parameters}) {
+    constructor({attach, log, parameters}) {
       this.parameters = parameters;
       this.driver = driver;
       this.attach = attach;
+      this.log = log;
+    
+      global.userName = this.parameters.userName;
+      global.password = this.parameters.password;
     }
 };
   

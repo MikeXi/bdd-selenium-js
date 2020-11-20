@@ -2,19 +2,21 @@
 
 var executor = require('./executor');
 var { jsonFile }= require('../config/report');
+
 var argv = require('minimist')(process.argv.slice(2));
-global.userName = argv.u;
-global.password = argv.p;
+var userName = argv.u;
+var password = argv.p;
 
 var cmd;
 var features = 'features/yandex/login features/yandex/mail features/yandex/account';
+var parameters = ' --world-parameters "{\\\"userName\\\":\\\"' + userName +'\\\",\\\"password\\\":\\\"' + password + '\\\"}"'
 
 if(argv.t !== undefined){
     var tag = argv.t;
-    cmd = '.\\node_modules\\.bin\\cucumber-js ' + features + ' --tags @' + tag + ' -f json:' + jsonFile;
+    cmd = '.\\node_modules\\.bin\\cucumber-js ' + features + ' --tags @' + tag + ' -f json:' + jsonFile + parameters;
 }
 else{
-    cmd = '.\\node_modules\\.bin\\cucumber-js -f json:' + jsonFile;
+    cmd = '.\\node_modules\\.bin\\cucumber-js ' + features + ' -f json:' + jsonFile + parameters;
 }
 
 executor.createResultFolder();
