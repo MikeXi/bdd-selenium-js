@@ -81,12 +81,9 @@ node {
 				bat '@echo off for /f "delims=" %%i in (\'npm ls wdio-safaridriver-service\') do if "%%i"=="`-- (empty)" (npm install --save-dev wdio-safaridriver-service)'
 				
 				echo "\u2600 Delete reports folder"
-				bat 'rmdir /s/q reports'
+				bat 'if exist reports (rmdir /s/q reports)'
             }
             pipeline {
-                environment {
-                    YANDEX_MAIL_USER  = credentials('yandex-user')
-                }
                 parameters {
                     choice(name: 'Environment', choices: ['dev', 'qa'], description: 'Please select the environment')
                     choice(name: 'Browser', choices: ['chrome', 'ie', 'firefox'], description: 'Please select the browser')
@@ -98,8 +95,12 @@ node {
                         echo "\u2600 Runtime Environment: [${params.Environment}]"
                         echo "\u2600 Runtime Browser: [${params.Browser}]"
                         echo "\u2600 Runtime Cases: [${params.Tag}]"
-                        
-                        bat "npm run ${params.Environment}:${params.Browser} -- -t ${params.Tag} -u $YANDEX_MAIL_USER_USR -p $YANDEX_MAIL_USER_PSW"
+                        withCredentials([usernameColonPassword(credentialsId: 'yandex-user', variable: 'USER')]) { 
+                            USERPSW = USER.split(':')
+                            USERNAME = USERPSW[0]
+                            PASSWORD = USERPSW[1]
+                            bat "npm run ${params.Environment}:${params.Browser} -- -t ${params.Tag} -u $USERNAME -p $PASSWORD"
+                        }
                     }
                 }
             }
