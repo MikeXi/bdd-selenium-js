@@ -1,4 +1,3 @@
-let { url, userName, password } = require('../../../../config/env');
 const { By, Key, until } = require('selenium-webdriver');
 var utils = require('../../../suport/utils');
 

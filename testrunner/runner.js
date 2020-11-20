@@ -14,10 +14,10 @@ var parameters = ' --world-parameters "{\\\"userName\\\":\\\"' + userName +'\\\"
 
 if(argv.t !== undefined){
     var tag = argv.t;
-    cmd = '.\\node_modules\\.bin\\cucumber-js ' + features + ' --tags @' + tag + ' -f json:' + jsonFile + parameters;
+    cmd = '.\\node_modules\\.bin\\cucumber-js ' + features + ' --retry 0 --tags @' + tag + ' -f json:' + jsonFile + parameters;
 }
 else{
-    cmd = '.\\node_modules\\.bin\\cucumber-js ' + features + ' -f json:' + jsonFile + parameters;
+    cmd = '.\\node_modules\\.bin\\cucumber-js ' + features + ' --retry 0 -f json:' + jsonFile + parameters;
 }
 
 executor.createResultFolder();
