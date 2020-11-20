@@ -96,10 +96,7 @@ node {
                         echo "\u2600 Runtime Browser: [${params.Browser}]"
                         echo "\u2600 Runtime Cases: [${params.Tag}]"
                         withCredentials([usernameColonPassword(credentialsId: 'yandex-user', variable: 'USER')]) { 
-                            USERPSW = USER.split(':')
-                            USERNAME = USERPSW[0]
-                            PASSWORD = USERPSW[1]
-                            bat "npm run ${params.Environment}:${params.Browser} -- -t ${params.Tag} -u $USERNAME -p $PASSWORD"
+                            bat "npm run ${params.Environment}:${params.Browser} -- -t ${params.Tag} -u $USER"
                         }
                     }
                 }
@@ -114,7 +111,7 @@ node {
         }
         finally {
             stage('Report') {
-                String resultFile = "TestReports.zip"
+                // String resultFile = "TestReports.zip"
                 // zip zipFile: 'TestReports.zip', archive: false, dir:'reports/'
                 //bat "del TestReports.zip"
                 archiveArtifacts artifacts: 'reports/', followSymlinks: true

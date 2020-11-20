@@ -4,8 +4,9 @@ var executor = require('./executor');
 var { jsonFile }= require('../config/report');
 
 var argv = require('minimist')(process.argv.slice(2));
-var userName = argv.u;
-var password = argv.p;
+var user = argv.u.split(':')
+var userName = user[0];
+var password = user[1];
 
 var cmd;
 var features = 'features/yandex/login features/yandex/mail features/yandex/account';
