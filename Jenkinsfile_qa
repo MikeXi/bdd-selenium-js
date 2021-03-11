@@ -2,7 +2,7 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Gitlab Info
-def gitCNMTest = 'https://git.epam.com/mike_xi/bdd-selenium-js.git'
+def gitCNMTest = 'https://github.com/mike_xi/bdd-selenium-js.git'
 def branch = "*/master"
 def gitCredentialsId = '6e186529-3131-48bb-87e1-d27a214e5460'
 
